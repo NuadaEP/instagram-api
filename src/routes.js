@@ -21,6 +21,7 @@ routes.get("/api", (req, res) => {
   return res.send("To have access of our API access /method");
 });
 
+routes.get("/api/posts", PostController.index);
 routes.post("/api/posts/create", upload.single("image"), PostController.create);
 
 module.exports = routes;
