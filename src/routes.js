@@ -11,6 +11,7 @@ const upload = multer(uploadConfig);
  * Require the controllers
  */
 const PostController = require("./controllers/PostController");
+const LikeController = require("./controllers/LikeController");
 
 const routes = new express.Router();
 routes.get("/", (req, res) => {
@@ -23,5 +24,7 @@ routes.get("/api", (req, res) => {
 
 routes.get("/api/posts", PostController.index);
 routes.post("/api/posts/create", upload.single("image"), PostController.create);
+
+routes.post("/api/posts/:id/like", LikeController.create);
 
 module.exports = routes;
