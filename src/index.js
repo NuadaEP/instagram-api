@@ -8,12 +8,13 @@ const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-mongoose.connect(
-  "mongodb+srv://brunoCardoso:7zATKIiEf7C7Kxmg@cloustertodev-ufres.mongodb.net/test?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true
-  }
-);
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+});
 
 app.use((req, res, next) => {
   req.io = io;
